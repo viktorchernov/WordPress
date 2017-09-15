@@ -75,11 +75,11 @@ function make_secure_key($args) {
   return $val;
 }
 // Generate OpenShift secure keys (or return defaults if not on OpenShift)
-$array = openshift_secure($_default_keys,'make_secure_key');
+//$array = openshift_secure($_default_keys,'make_secure_key');
 // Loop through returned values and define them
-foreach ($array as $key => $value) {
-  define($key,$value);
-}
+//foreach ($array as $key => $value) {
+//  define($key,$value);
+//}
 /**#@-*/
 /**
  * WordPress Database Table prefix.
