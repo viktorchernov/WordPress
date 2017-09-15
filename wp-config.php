@@ -1,6 +1,4 @@
 <?php
-/** Enable W3 Total Cache */
-define('WP_CACHE', true);
 /**
  * The base configuration for WordPress
  *
@@ -19,8 +17,27 @@ define('WP_CACHE', true);
  *
  * @package WordPress
  */
+
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
+//define('DB_NAME', 'database_name_here');
+
+/** MySQL database username */
+//define('DB_USER', 'username_here');
+
+/** MySQL database password */
+//define('DB_PASSWORD', 'password_here');
+
+/** MySQL hostname */
+//define('DB_HOST', 'localhost');
+
+/** Database Charset to use in creating database tables. */
+//define('DB_CHARSET', 'utf8');
+
+/** The Database Collate type. Don't change this if in doubt. */
+//define('DB_COLLATE', '');
+
+
 define('DB_NAME', getenv("DATABASE_NAME"));
 /** MySQL database username */
 define('DB_USER', getenv("DATABASE_USER"));
@@ -32,6 +49,9 @@ define('DB_HOST', getenv(strtoupper(getenv("DATABASE_SERVICE_NAME"))."_SERVICE_H
 define('DB_CHARSET', 'utf8');
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
+
+
+
 /**#@+
  * Authentication Unique Keys and Salts.
  *
@@ -41,46 +61,17 @@ define('DB_COLLATE', '');
  *
  * @since 2.6.0
  */
-// This is where we define the OpenShift specific secure variable functions
-#require_once(getenv('HOME') . '/wp-includes/openshift.inc');
-// Set the default keys to use
-$_default_keys = array(
-  'AUTH_KEY'          => 'GNUMqyq8Vy*mcwA5e_6^hNI4CrEK~$HU2CzGw65%C(l`;E|Dcu90!/hdVlm4E_bd',
-  'SECURE_AUTH_KEY'   => '?EqRtd^`gG`Z|&x[ @ZR0udGQn~/]+%/fjsuPC?Np9B[Td7Cn6x^(b&CQ])--.fN',
-  'LOGGED_IN_KEY'     => '-pa|qa7URoK 4mgViU%rNb3dg)4x?eV=yYf?uUhg/u8=B|Aj3wcA=PCW(.QxM#1O',
-  'NONCE_KEY'         => '=vU!} E*#wSeq}iJC+N8HY3lXvg+xe.q-Ty|2lWPsETdPI&yGkZ2VXKnN?g)NTF%',
-  'AUTH_SALT'         => ']!1Ue@m`%m#XD>o>%V0PNFS=r<fLj-|*+HB@8/Et>jATSL{{;sp,T1KVYQNzxWpr',
-  'SECURE_AUTH_SALT'  => '4^|D+|kS!8H@Mf%vG#r)47Q|mA1-AG&:J}EWYIgx]7vu7Fk!+#-oL;=i$2y#]BPS',
-  'LOGGED_IN_SALT'    => 'f,n}AR:%.|?{(zhoM9l,y`FP,:/:+dt*qsof(Nt4,Py$qXsSaY=?9b*,_3*C1/#@',
-  'NONCE_SALT'        => 'X|1R9MPaCR2n7 +DWl*:UP5OR-1IG|Ws3* zYFm9?Xsbuwf#GfF]^br-t)98@8=8'
-);
-// This function gets called by openshift_secure and passes an array
-function make_secure_key($args) {
-  $hash = $args['hash'];
-  $key  = $args['variable'];
-  $original = $args['original'];
-  $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-  $chars .= '!@#$%^&*()';
-  $chars .= '-_ []{}<>~`+=,.;:/?|';
-  // Convert the hash to an int to seed the RNG
-  srand(hexdec(substr($hash,0,8)));
-  // Create a random string the same length as the default
-  $val = '';
-  for($i = 1; $i <= strlen($original); $i++){
-    $val .= substr( $chars, rand(0,strlen($chars))-1, 1);
-  }
-  // Reset the RNG
-  srand();
-  // Set the value
-  return $val;
-}
-// Generate OpenShift secure keys (or return defaults if not on OpenShift)
-$array = openshift_secure($_default_keys,'make_secure_key');
-// Loop through returned values and define them
-foreach ($array as $key => $value) {
-  define($key,$value);
-}
+define('AUTH_KEY',         'put your unique phrase here');
+define('SECURE_AUTH_KEY',  'put your unique phrase here');
+define('LOGGED_IN_KEY',    'put your unique phrase here');
+define('NONCE_KEY',        'put your unique phrase here');
+define('AUTH_SALT',        'put your unique phrase here');
+define('SECURE_AUTH_SALT', 'put your unique phrase here');
+define('LOGGED_IN_SALT',   'put your unique phrase here');
+define('NONCE_SALT',       'put your unique phrase here');
+
 /**#@-*/
+
 /**
  * WordPress Database Table prefix.
  *
@@ -88,6 +79,7 @@ foreach ($array as $key => $value) {
  * a unique prefix. Only numbers, letters, and underscores please!
  */
 $table_prefix  = 'wp_';
+
 /**
  * For developers: WordPress debugging mode.
  *
@@ -101,11 +93,12 @@ $table_prefix  = 'wp_';
  * @link https://codex.wordpress.org/Debugging_in_WordPress
  */
 define('WP_DEBUG', false);
+
 /* That's all, stop editing! Happy blogging. */
+
 /** Absolute path to the WordPress directory. */
 if ( !defined('ABSPATH') )
-    define('ABSPATH', dirname(__FILE__) . '/');
+	define('ABSPATH', dirname(__FILE__) . '/');
+
 /** Sets up WordPress vars and included files. */
 require_once(ABSPATH . 'wp-settings.php');
-/** Set wordpress to save everything on disk */
-define('FS_METHOD', getenv("FS_METHOD"));
