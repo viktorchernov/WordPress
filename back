@@ -42,7 +42,7 @@ define('DB_COLLATE', '');
  * @since 2.6.0
  */
 // This is where we define the OpenShift specific secure variable functions
-#require_once(getenv('HOME') . '/wp-includes/openshift.inc');
+require_once(getenv('HOME') . '/wp-includes/openshift.inc');
 // Set the default keys to use
 $_default_keys = array(
   'AUTH_KEY'          => 'GNUMqyq8Vy*mcwA5e_6^hNI4CrEK~$HU2CzGw65%C(l`;E|Dcu90!/hdVlm4E_bd',
