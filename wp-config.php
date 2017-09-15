@@ -114,7 +114,9 @@ define('DB_COLLATE', '');
 | Keys and Salts are automatically configured below.
 |
 */
-require_once(getenv('OPENSHIFT_REPO_DIR') . '/wp-includes/openshift.inc');
+require_once(getenv('HOME') . '/wp-includes/openshift.inc');
+
+#require_once(getenv('OPENSHIFT_REPO_DIR') . '/wp-includes/openshift.inc');
 /*
 |--------------------------------------------------------------------------
 | That's all, stop editing! Happy blogging.
